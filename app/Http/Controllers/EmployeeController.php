@@ -18,9 +18,8 @@ class EmployeeController extends Controller
         return view('admin.employee')->with(['employees'=> Employee::all(), 'schedules'=>Schedule::all()]);
     }
 
-    public function store(EmployeeRec $request, Employee $employee)
+    public function store(EmployeeRec $request)
     {
-
         $request->validated();
 
         $employee = new Employee;
@@ -30,8 +29,6 @@ class EmployeeController extends Controller
         $employee->pin_code = bcrypt($request->pin_code);
         $employee->save();
 
-
-
         if($request->schedule){
 
             $schedule = Schedule::whereSlug($request->schedule)->first();
@@ -39,7 +36,7 @@ class EmployeeController extends Controller
             $employee->schedules()->attach($schedule);
         }
 
-       //  $role = Role::whereSlug('emp')->first();
+        // $role = Role::whereSlug('emp')->first();
 
         // $employee->roles()->attach($role);
 
