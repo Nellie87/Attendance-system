@@ -21,12 +21,7 @@
     </div>
 @endif
                     @csrf
-                    <div class="form-group">
-                        <label for="name" class="col-sm-6 control-label">Name <i>{without any space}</i></label>
-                        <div class="bootstrap-timepicker">
-                            <input type="text" placeholder="Enter a Schedule name [hypen accepted]" class="form-control timepicker" id="name" name="slug">
-                        </div>
-                    </div>
+                   
                     <!--
                     <div class="form-group">
                         <label for="time_in" class="col-sm-3 control-label">Time In</label>
@@ -48,6 +43,12 @@
                     <div class="form-group">
                         <label for="leader" class="col-sm-3 control-label">Leader</label>
                         <input type="text" class="form-control" id="leader" name="leader" placeholder="Enter Leader">
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-6 control-label">Estates <i>{separate with dashes}</i></label>
+                        <div class="bootstrap-timepicker">
+                            <input type="text" placeholder="Enter estates included" class="form-control timepicker" id="name" name="slug">
+                        </div>
                     </div>
             </div>
             <div class="modal-footer">

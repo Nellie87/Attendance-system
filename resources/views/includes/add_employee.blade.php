@@ -54,14 +54,13 @@
                         </div>
                        
                         <div class="form-group">
-                            <label for="schedule" class="col-sm-3 control-label">Schedule</label>
+                            <label for="fellowship" class="col-sm-3 control-label">Fellowship</label>
 
 
-                            <select class="form-control" id="schedule" name="schedule" required>
+                            <select class="form-control" id="fellowship" name="fellowship" required>
                                 <option value="" selected>- Select -</option>
                                 @foreach($schedules as $schedule)
-                                <option value="{{$schedule->slug}}">{{$schedule->slug}} -> from {{$schedule->time_in}}
-                                    to {{$schedule->time_out}} </option>
+                                <option value="{{$schedule->fellowship}}">{{$schedule->fellowship}}  </option>
                                 @endforeach
 
                             </select>

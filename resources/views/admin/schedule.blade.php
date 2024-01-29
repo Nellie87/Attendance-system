@@ -31,24 +31,25 @@
                             <table id="datatable-buttons" class="table table-hover table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead class="thead-dark">
                                     <tr>
-                                        <th data-priority="1">#</th>
-                                        <th data-priority="2">Shift</th>
+                                        <th data-priority="2">#</th>
                                      <!--   <th data-priority="3">Time In</th>
                                         <th data-priority="4">Time Out</th> -->
-                                        <th data-priority="5">Fellowship</th>
-                                        <th data-priority="6">Leader</th>
-                                        <th data-priority="7">Actions</th>
+                                        <th data-priority="1">Fellowship</th>
+                                        <th data-priority="3">Leader</th>
+                                        <th data-priority="4">Estates</th>
+                                        <th data-priority="5">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($schedules as $schedule)
                                         <tr>
                                             <td>{{ $schedule->id }}</td>
-                                            <td>{{ $schedule->slug }}</td>
+                                          <!--  <td>{{ $schedule->slug }}</td> -->
                                         <!--    <td>{{ $schedule->time_in }}</td>
                                             <td>{{ $schedule->time_out }}</td>-->
                                             <td>{{ $schedule->fellowship }}</td>
                                             <td>{{ $schedule->leader }}</td>
+                                            <td>{{ $schedule->slug }}</td>
                                             <td>
                                                 <a href="#edit{{ $schedule->slug }}" data-toggle="modal" class="btn btn-success btn-sm edit btn-flat"><i class='fa fa-edit'></i></a>
                                                 <a href="#delete{{ $schedule->slug }}" data-toggle="modal" class="btn btn-danger btn-sm delete btn-flat"><i class='fa fa-trash'></i></a>

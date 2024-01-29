@@ -37,7 +37,7 @@
                                                         <th data-priority="2">Name</th>
                                                         <th data-priority="3">Position</th>
                                                         <th data-priority="4">Email</th>
-                                                        <th data-priority="5">Schedule</th>
+                                                        <th data-priority="5">Fellowship</th>
                                                         <th data-priority="6">Member Since</th>
                                                         <th data-priority="7">Actions</th>
                                                      
@@ -52,10 +52,15 @@
                                                             <td>{{$employee->position}}</td>
                                                             <td>{{$employee->email}}</td>
                                                             <td>
-                                                                @if(isset($employee->schedules->first()->slug))
-                                                                {{$employee->schedules->first()->slug}}
-                                                                @endif
-                                                            </td>
+    @php
+        $firstSchedule = $employee->schedules->first();
+    @endphp
+
+    @if($firstSchedule)
+        {{$firstSchedule->fellowship}}
+    @endif
+</td>
+
                                                             <td>{{$employee->created_at}}</td>
                                                             <td>
                         
