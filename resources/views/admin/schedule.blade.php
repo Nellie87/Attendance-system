@@ -31,10 +31,10 @@
                             <table id="datatable-buttons" class="table table-hover table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                 <thead class="thead-dark">
                                     <tr>
-                                        <th data-priority="2">#</th>
+                                        <th data-priority="1">#</th>
                                      <!--   <th data-priority="3">Time In</th>
                                         <th data-priority="4">Time Out</th> -->
-                                        <th data-priority="1">Fellowship</th>
+                                        <th data-priority="2">Fellowship</th>
                                         <th data-priority="3">Leader</th>
                                         <th data-priority="4">Estates</th>
                                         <th data-priority="5">Actions</th>

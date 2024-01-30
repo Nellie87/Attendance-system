@@ -23,7 +23,7 @@
                                             <div class="float-left mini-stat-img mr-4">
                                                 <span class="ti-id-badge" style="font-size: 30px"></span>
                                             </div>
-                                            <h5 class="font-16 text-uppercase mt-0 text-white-50">Total <br> Employees</h5> 
+                                            <h5 class="font-16 text-uppercase mt-0 text-white-50">Total <br> Members</h5> 
                                         </div>
 										<!-- Log on to codeastro.com for more projects! -->
                                         <h1 class="font-500 float-right">{{$data[0]}} </h1>
@@ -123,7 +123,7 @@
                                             <div class="float-left mini-stat-img mr-4">
                                                 <span class="ti-panel" style="font-size: 30px"></span>
                                             </div>
-                                            <h5 class="font-16 text-uppercase mt-0 text-white-50">Availabe <br> Schedules</h5> 
+                                            <h5 class="font-16 text-uppercase mt-0 text-white-50">Availabe <br> Fellowships</h5> 
                                         </div>
                                         <h1 class="font-500 float-right">{{$data[4]}} </h1>
                                         <span class="ti-time float-left" style="font-size: 71px"></span>

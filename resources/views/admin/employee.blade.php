@@ -52,14 +52,14 @@
                                                             <td>{{$employee->position}}</td>
                                                             <td>{{$employee->email}}</td>
                                                             <td>
-    @php
-        $firstSchedule = $employee->schedules->first();
-    @endphp
+                                                            @php
+                                                                $firstSchedule = $employee->schedules->first();
+                                                            @endphp
 
-    @if($firstSchedule)
-        {{$firstSchedule->fellowship}}
-    @endif
-</td>
+                                                            @if($firstSchedule)
+                                                                {{$firstSchedule->fellowship}}
+                                                            @endif
+                                                        </td>
 
                                                             <td>{{$employee->created_at}}</td>
                                                             <td>

@@ -46,9 +46,11 @@
                     </div>
                     <div class="form-group">
                         <label for="name" class="col-sm-6 control-label">Estates <i>{separate with dashes}</i></label>
-                        <div class="bootstrap-timepicker">
+                        <input type="text" class="form-control" id="name" name="slug" placeholder="Enter estates included">
+
+                      <!--  <div class="bootstrap-timepicker">
                             <input type="text" placeholder="Enter estates included" class="form-control timepicker" id="name" name="slug">
-                        </div>
+                        </div>-->
                     </div>
             </div>
             <div class="modal-footer">
