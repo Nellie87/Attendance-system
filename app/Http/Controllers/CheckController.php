@@ -57,12 +57,13 @@ class CheckController extends Controller
                             $data = new Leave();
                             $data->emp_id = $key;
                             $emp_req = Employee::whereId($data->emp_id)->first();
-                            $data->leave_time = $emp_req->schedules->first()->time_out;
+                       //   $data->leave_time = $emp_req->schedules->first()->time_out;
                             $data->leave_date = $keys;
+                           /*
                             if ($employee->schedules->first()->time_out <= $data->leave_time) {
                                 $data->status = 1;
                                 
-                            }
+                            }*/
                             
                             $data->save();
                         }

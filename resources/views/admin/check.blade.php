@@ -17,9 +17,9 @@
                 <thead class="thead-dark">
                         <tr>
 
-                            <th>Employee</th>
+                            <th>Name</th>
                             <th>Position</th>
-                            <!-- <th>ID</th> -->
+                            <th>ID</th> 
 							<!-- Log on to codeastro.com for more projects! -->
                             @php
     $today = today();
@@ -59,8 +59,7 @@
                                 <tr>
                                     <td>{{ $employee->name }}</td>
                                     <td>{{ $employee->position }}</td>
-                                    <!-- <td>{{ $employee->id }}</td> -->
-									<!-- Log on to codeastro.com for more projects! -->
+                                 <td>{{ $employee->id }}</td>
 
 
 

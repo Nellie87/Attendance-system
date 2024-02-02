@@ -30,7 +30,7 @@
 
                             <li class="">
                                 <a href="/schedule" class="waves-effect {{ request()->is("schedule") || request()->is("schedule/*") ? "mm active" : "" }}">
-                                    <i class="ti-time"></i> <span> Schedule </span>
+                                    <i class="ti-time"></i> <span> Fellowships</span>
                                 </a>
                             </li>
                             <li class="">

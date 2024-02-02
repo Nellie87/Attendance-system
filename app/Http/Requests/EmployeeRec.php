@@ -26,7 +26,7 @@ class EmployeeRec extends FormRequest
         return [
             'name' => 'required|string|min:3|max:64|alpha_dash',
             'position' => 'required|string|min:3|max:64|alpha_dash',
-            'fellowship' => 'required|exists:schedules,fellowship',
+          //  'fellowship' => 'required|exists:schedules,fellowship',
         ];
     }
 }

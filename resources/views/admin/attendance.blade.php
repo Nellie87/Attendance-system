@@ -40,8 +40,8 @@
                                         <th data-priority="3">Name</th>
                                         <th data-priority="4">Attendance</th>
 
-                                        <th data-priority="6">Time In</th>
-                                        <th data-priority="7">Time Out</th>
+                                      <!--  <th data-priority="6">Time In</th>-->
+                                      <!--  <th data-priority="7">Time Out</th>-->
 
 
                                     </tr>
@@ -54,6 +54,7 @@
                                             <td>{{ $attendance->attendance_date }}</td>
                                             <td>{{ $attendance->emp_id }}</td>
                                             <td>{{ $attendance->employee->name }}</td>
+                                            <!--
                                             <td>{{ $attendance->attendance_time }}
                                                 @if ($attendance->status == 1)
                                                     <span class="badge badge-success badge-pill float-right">On Time</span>
@@ -62,7 +63,8 @@
                                                 @endif
                                             </td>
 
-                                    
+-->
+                        
                                         </tr>
 
                                     @endforeach
