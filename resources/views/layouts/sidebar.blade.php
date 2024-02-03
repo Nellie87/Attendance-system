@@ -17,7 +17,7 @@
                             
 
                             <li>
-                            <a href="/employees" class="waves-effect {{ request()->is("employees") || request()->is("/employees/*") ? "mm active" : "" }}"><i class="ti-user"></i><span> Employees </span></a>
+                            <a href="/employees" class="waves-effect {{ request()->is("employees") || request()->is("/employees/*") ? "mm active" : "" }}"><i class="ti-user"></i><span> Members </span></a>
                                 <!-- <ul class="submenu">
                                     <li>
                                         <i class="dripicons-view-apps"></i><span>Employees List</span></a>

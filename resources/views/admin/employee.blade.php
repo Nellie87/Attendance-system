@@ -36,7 +36,7 @@
                                                         <th data-priority="1">ID</th>
                                                         <th data-priority="2">Name</th>
                                                         <th data-priority="3">Position</th>
-                                                        <th data-priority="4">Email</th>
+                                                        <th data-priority="4">Contact</th>
                                                         <th data-priority="5">Fellowship</th>
                                                         <th data-priority="6">Member Since</th>
                                                         <th data-priority="7">Actions</th>
@@ -50,7 +50,7 @@
                                                             <td>{{$employee->id}}</td>
                                                             <td>{{$employee->name}}</td>
                                                             <td>{{$employee->position}}</td>
-                                                            <td>{{$employee->email}}</td>
+                                                            <td>{{$employee->contact}}</td>
                                                             <td>
                                                             @php
                                                                 $firstSchedule = $employee->schedules->first();

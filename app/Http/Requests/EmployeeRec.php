@@ -27,6 +27,8 @@ class EmployeeRec extends FormRequest
             'name' => 'required|string|min:3|max:64|alpha_dash',
             'position' => 'required|string|min:3|max:64|alpha_dash',
           //  'fellowship' => 'required|exists:schedules,fellowship',
+          'contact' => 'nullable|numeric', // Allow null and numeric values
+
         ];
     }
 }
