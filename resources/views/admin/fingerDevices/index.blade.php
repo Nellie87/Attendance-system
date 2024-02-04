@@ -172,7 +172,7 @@
 
                                         <i class="fas fa-plus"></i>
 
-                                        Add Employee
+                                        Add Member
 
                                     </a>
                                     
