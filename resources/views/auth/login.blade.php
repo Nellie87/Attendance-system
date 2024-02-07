@@ -8,7 +8,7 @@
                 <h4 class="font-20 m-b-5">Simple Attendance Management System</h4>
                 <p class="text-white-50 mb-4"></p>
                 <a href="{{ route('welcome') }}" class="logo logo-admin">
-                    <h1>DC KRD</h1>
+                    <h1> DC </h1>
                 </a>
             </div>
             <div class="account-card-content">
