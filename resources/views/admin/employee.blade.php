@@ -54,12 +54,15 @@
                                                             <td>
                                                             @php
                                                                 $firstSchedule = $employee->schedules->first();
-                                                            @endphp
-
-                                                            @if($firstSchedule)
+                                                            @endphp   
+                                                                @if($firstSchedule)
                                                                 {{$firstSchedule->fellowship}}
-                                                            @endif
-                                                        </td>
+                                                                @else
+                                                             No fellowship
+                                                             @endif
+                                                            </td>
+
+
 
                                                             <td>{{$employee->created_at}}</td>
                                                             <td>

@@ -50,7 +50,7 @@ class Employee extends Model
     {
         return $this->belongsToMany('App\Models\Schedule', 'schedule_employees', 'emp_id', 'schedule_id');
     }
-
+    
 
     
 

@@ -31,11 +31,11 @@
                  
                   
                     <div class="form-group">
-                        <label for="email" class="col-sm-3 control-label">Email</label>
+                        <label for="contact" class="col-sm-3 control-label">Contact</label>
 
 
-                        <input type="email" class="form-control" id="email" name="email"
-                            value="{{ $employee->email }}" >
+                        <input type="tel" class="form-control" id="contact" name="contact"
+                            value="{{ $employee->contact }}" >
 
                     </div>
                     <div class="form-group">

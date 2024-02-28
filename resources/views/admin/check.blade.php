@@ -1,17 +1,16 @@
-{{-- @extends('layouts.master')
+ @extends('layouts.master')
 
-@section('css') --}}
+@section('css') 
     {{-- Table css --}}
-    {{-- <link href="{{ URL::asset('plugins/RWD-Table-Patterns/dist/css/rwd-table.min.css') }}" rel="stylesheet"
+   <link href="{{ URL::asset('plugins/RWD-Table-Patterns/dist/css/rwd-table.min.css') }}" rel="stylesheet"
         type="text/css" media="screen">
 @endsection
 
 
-{{-- @section('content') --}}
+ @section('content') 
 
-    {{-- <div class="card"> --}}
-	{{-- Log on to codeastro.com for more projects! --}}
-        {{-- <div class="card-body">
+    <div class="card"> 
+        <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-responsive table-hover table-bordered table-sm">
                 <thead class="thead-dark">
@@ -21,7 +20,7 @@
                             <th>Position</th>
                             <th>ID</th> 
 							{{-- Log on to codeastro.com for more projects! --}}
-                            {{-- @php
+                             @php
     $today = today();
     $dates = [];
     
@@ -52,8 +51,8 @@
                            
                             <button type="submit" class="btn btn-success" style="display: flex; margin:10px">Submit Attendance</button>
                             @csrf
-                            @foreach ($employees as $employee) --}}
-<!-- 
+                            @foreach ($employees as $employee) 
+
                                 <input type="hidden" name="emp_id" value="{{ $employee->id }}">
 
                                 <tr>
@@ -92,12 +91,7 @@
                                                     @if (isset($check_attd))  checked @endif id="inlineCheckbox1" value="1">
 
                                             </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" id="check_box"
-                                                    name="leave[{{ $date_picker }}][{{ $employee->id }}]]" type="checkbox"
-                                                    @if (isset($check_leave))  checked @endif id="inlineCheckbox2" value="1">
-
-                                            </div>
+                                           
 
                                         </td>
 
@@ -111,9 +105,9 @@
                     </tbody>
 					{{-- Log on to codeastro.com for more projects! --}}
 
-{{-- 
+
                 </table>
             </div>
         </div>
     </div>
-@endsection --}}
+@endsection 
