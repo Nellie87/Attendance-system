@@ -58,17 +58,7 @@
                                                 <i class="fas fa-times text-danger"></i>
                                             @endif
                                         </div>
-                                        <div class="form-check form-check-inline">
-                                            @if (isset($check_leave))
-                                                @if ($check_leave->status==1)
-                                                    <i class="fa fa-check text-success"></i>
-                                                @else
-                                                    <i class="fa fa-check text-danger"></i>
-                                                @endif
-                                            @else
-                                                <i class="fas fa-times text-danger"></i>
-                                            @endif
-                                        </div>
+                                       
                                     </td>
                                 @endforeach
                             </tr>
