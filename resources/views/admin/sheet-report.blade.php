@@ -4,8 +4,22 @@
     <div class="card">
         <div class="card-header bg-success text-white">
             Attendance Sheet Report
+            <a href="{{ route('attendance.pdf') }}" class="btn btn-primary">Download as PDF</a>
         </div>
         <div class="card-body">
+            <div class="mb-3">
+                @php
+                    $startDate = now()->startOfYear(); // Get the start of the current year
+                    $endDate = now(); // Get the current date
+                    $months = [];
+                    for ($date = $startDate; $date->lte($endDate); $date->addMonth()) {
+                        $months[$date->format('m-Y')] = $date->format('F Y');
+                    }
+                @endphp
+                @foreach ($months as $monthKey => $month)
+                    <button type="button" class="btn btn-primary month-toggle" data-month="{{ $monthKey }}">{{ $month }}</button>
+                @endforeach
+            </div>
             <div class="table-responsive">
                 <table class="table table-md table-hover" id="printTable">
                     <thead class="thead-dark">
@@ -13,30 +27,27 @@
                             <th>Employee</th>
                             <th>Position</th>
                             @php
-                                $today = today();
+                                $startDate = now()->startOfYear(); // Get the start of the current year
+                                $endDate = now(); // Get the current date
                                 $dates = [];
-                                for ($i = 1; $i <= $today->daysInMonth; ++$i) {
-                                    $date = \Carbon\Carbon::createFromDate($today->year, $today->month, $i);
+                                for ($date = $startDate; $date->lte($endDate); $date->addDay()) {
                                     if ($date->dayOfWeek === 0) { // Check if it's Sunday
                                         $dates[] = $date->format('Y-m-d');
                                     }
                                 }
                             @endphp
                             @foreach ($dates as $date)
-                                <th style="">
-                                    {{ $date }}
-                                </th>
+                                <th class="sunday-column">{{ $date }}</th>
                             @endforeach
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($employees as $employee)
-                            <input type="hidden" name="emp_id" value="{{ $employee->id }}">
                             <tr>
                                 <td>{{ $employee->name }}</td>
                                 <td>{{ $employee->position }}</td>
                                 @foreach ($dates as $date)
-                                    <td>
+                                    <td class="sunday-column">
                                         @php
                                             $check_attd = \App\Models\Attendance::query()
                                                 ->where('emp_id', $employee->id)
@@ -58,7 +69,6 @@
                                                 <i class="fas fa-times text-danger"></i>
                                             @endif
                                         </div>
-                                       
                                     </td>
                                 @endforeach
                             </tr>
@@ -68,4 +78,24 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const monthButtons = document.querySelectorAll('.month-toggle');
+            const sundayColumns = document.querySelectorAll('.sunday-column');
+
+            monthButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const selectedMonth = this.getAttribute('data-month');
+                    sundayColumns.forEach(column => {
+                        if (column.textContent.includes(selectedMonth)) {
+                            column.style.display = 'table-cell';
+                        } else {
+                            column.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
 @endsection

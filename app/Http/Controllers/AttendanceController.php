@@ -8,6 +8,9 @@ use App\Models\Latetime;
 use App\Models\Attendance;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\AttendanceEmp;
+use Illuminate\Http\Request;
+
+use PDF;
 
 class AttendanceController extends Controller
 {   
@@ -50,5 +53,36 @@ class AttendanceController extends Controller
         $latetime->latetime_date = date('Y-m-d', strtotime($att_dateTime));
         $latetime->save();
     }
+    public function generatePDF()
+{
+    $data = [
+        // Pass any data you want to include in the PDF
+        'employees' => Employee::all(),
+    ];
+
+    $pdf = PDF::loadView('attendance.pdf', $data);
+
+    return $pdf->download('attendance.pdf');
+}
   
+public function filter(Request $request)
+{
+    // Retrieve the input from the form
+    $dateFilter = $request->input('date_filter');
+    $monthFilter = $request->input('month_filter');
+
+    // Query attendance based on the filters
+    if ($dateFilter) {
+        $attendances = Attendance::whereDate('attendance_date', $dateFilter)->get();
+    } elseif ($monthFilter) {
+        $attendances = Attendance::whereMonth('attendance_date', $monthFilter)->get();
+    } else {
+        // If no filters provided, you might want to return all attendance
+        $attendances = Attendance::all();
+    }
+
+    // Return the filtered attendance to the view
+    return view('admin.sheet-report', ['attendances' => $attendances]);
+}
+
 }

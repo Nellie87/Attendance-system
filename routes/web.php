@@ -73,3 +73,8 @@ Route::group(['middleware' => ['auth']], function () {
 
 
 // Route::get('{any}', 'App\http\controllers\VeltrixController@index');
+
+Route::get('/attendance/pdf', 'AttendanceController@generatePDF')->name('attendance.pdf');
+// routes/web.php
+
+Route::get('/attendance/filter', 'AttendanceController@filter')->name('attendance.filter');
