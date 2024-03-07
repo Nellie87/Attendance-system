@@ -5,21 +5,9 @@
         <div class="card-header bg-success text-white">
             Attendance Sheet Report
             <a href="{{ route('attendance.pdf') }}" class="btn btn-primary">Download as PDF</a>
+
         </div>
         <div class="card-body">
-            <div class="mb-3">
-                @php
-                    $startDate = now()->startOfYear(); // Get the start of the current year
-                    $endDate = now(); // Get the current date
-                    $months = [];
-                    for ($date = $startDate; $date->lte($endDate); $date->addMonth()) {
-                        $months[$date->format('m-Y')] = $date->format('F Y');
-                    }
-                @endphp
-                @foreach ($months as $monthKey => $month)
-                    <button type="button" class="btn btn-primary month-toggle" data-month="{{ $monthKey }}">{{ $month }}</button>
-                @endforeach
-            </div>
             <div class="table-responsive">
                 <table class="table table-md table-hover" id="printTable">
                     <thead class="thead-dark">
@@ -37,17 +25,32 @@
                                 }
                             @endphp
                             @foreach ($dates as $date)
-                                <th class="sunday-column">{{ $date }}</th>
+                                <th style="">
+                                    {{ $date }}
+                                    <br>
+                                    <small>
+                                        @php
+                                            $sundayAttendance = \App\Models\Attendance::query()
+                                                ->where('attendance_date', $date)
+                                                ->where('status', 1) // Consider only present employees
+                                                ->count();
+                                            $totalEmployees = count($employees);
+                                            $attendancePercentage = $totalEmployees > 0 ? round(($sundayAttendance / $totalEmployees) * 100, 2) : 0;
+                                        @endphp
+                                        {{ $attendancePercentage }}% Present
+                                    </small>
+                                </th>
                             @endforeach
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($employees as $employee)
+                            <input type="hidden" name="emp_id" value="{{ $employee->id }}">
                             <tr>
                                 <td>{{ $employee->name }}</td>
                                 <td>{{ $employee->position }}</td>
                                 @foreach ($dates as $date)
-                                    <td class="sunday-column">
+                                    <td>
                                         @php
                                             $check_attd = \App\Models\Attendance::query()
                                                 ->where('emp_id', $employee->id)
@@ -69,6 +72,7 @@
                                                 <i class="fas fa-times text-danger"></i>
                                             @endif
                                         </div>
+                                       
                                     </td>
                                 @endforeach
                             </tr>
@@ -78,24 +82,4 @@
             </div>
         </div>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const monthButtons = document.querySelectorAll('.month-toggle');
-            const sundayColumns = document.querySelectorAll('.sunday-column');
-
-            monthButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const selectedMonth = this.getAttribute('data-month');
-                    sundayColumns.forEach(column => {
-                        if (column.textContent.includes(selectedMonth)) {
-                            column.style.display = 'table-cell';
-                        } else {
-                            column.style.display = 'none';
-                        }
-                    });
-                });
-            });
-        });
-    </script>
 @endsection
