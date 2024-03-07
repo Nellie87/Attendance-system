@@ -10,6 +10,11 @@
 
     <div class="card"> 
         <div class="card-body">
+        @php
+                $today = today();
+                $monthName = $today->format('F'); // Get the full month name
+            @endphp
+            <h2>{{ $monthName }}</h2> <!-- Display the full month name -->
             <div class="table-responsive">
                 <table class="table table-responsive table-hover table-bordered table-sm">
                     <thead class="thead-dark">
