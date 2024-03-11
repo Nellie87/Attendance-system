@@ -150,15 +150,7 @@
                             </div>
 
                             <div class="col-xl-3">
-                                <div class="card">
-                                     <div class="card-body">
-                                        <div>
-                                            <h4 class="mt-0 header-title mb-4">Sales Analytics</h4>
-                                        </div>
-                                       
-                                      
-                                       </div> 
-                                </div>
+                              
                             </div>
                         </div>
                         <!-- end row -->
