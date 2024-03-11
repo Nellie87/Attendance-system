@@ -63,15 +63,9 @@
                                 <a href="/overtime" class="waves-effect {{ request()->is("overtime") || request()->is("overtime/*") ? "mm active" : "" }}">
                                     <i class="dripicons-alarm"></i> <span> Over Time </span>
                                 </a>
-                            </li> -->
-                            <li class="menu-title">Tools</li>
-                            <li class="">
-                                <a href="{{ route("finger_device.index") }}" class="waves-effect {{ request()->is("finger_device") || request()->is("finger_device/*") ? "mm active" : "" }}">
-                                    <i class="fas fa-fingerprint"></i> <span> Biometric Device </span>
-                                </a>
-                            </li>
+                        
 
-                        </ul>
+                                
 						<!-- Log on to codeastro.com for more projects! -->
                     </div>
                     <!-- Sidebar -->

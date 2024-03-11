@@ -6,6 +6,18 @@
             Attendance Sheet Report
             <a href="{{ route('attendance.pdf') }}" class="btn btn-primary">Download as PDF</a>
 
+            <!-- Buttons for filtering by month -->
+            <div class="btn-group ml-2">
+                @php
+                    $months = [];
+                    for ($i = 1; $i <= 12; $i++) {
+                        $months[date('F', mktime(0, 0, 0, $i, 1))] = date('m', mktime(0, 0, 0, $i, 1));
+                    }
+                @endphp
+                @foreach ($months as $monthName => $monthNumber)
+                    <button type="button" class="btn btn-secondary filter-btn" data-month="{{ $monthNumber }}">{{ $monthName }}</button>
+                @endforeach
+            </div>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -72,7 +84,6 @@
                                                 <i class="fas fa-times text-danger"></i>
                                             @endif
                                         </div>
-                                       
                                     </td>
                                 @endforeach
                             </tr>
@@ -82,4 +93,30 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // JavaScript for filtering attendance data by month
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const month = this.dataset.month;
+
+                    // Hide all rows initially
+                    const rows = document.querySelectorAll('tbody tr');
+                    rows.forEach(row => {
+                        row.style.display = 'none';
+                    });
+
+                    // Show rows with attendance for selected month
+                    const rowsToShow = document.querySelectorAll(`tbody td:nth-child(${parseInt(month) + 2})`);
+                    rowsToShow.forEach(cell => {
+                        const row = cell.closest('tr');
+                        row.style.display = '';
+                    });
+                });
+            });
+        });
+    </script>
 @endsection
