@@ -31,7 +31,7 @@
                                     $currentDate = $today->copy()->day($i);  // Create a Carbon object for the current day
 
                                     // Check if the current day is a Sunday (dayOfWeek returns 0 for Sunday)
-                                    if ($currentDate->dayOfWeek == 0) {
+                                    if ($currentDate->dayOfWeek == 0 && $currentDate->lte($today)) {
                                         $dates[] = $currentDate->format('Y-m-d');
                                     }
                                 }
