@@ -10,11 +10,6 @@
 
     <div class="card"> 
         <div class="card-body">
-        @php
-                $today = today();
-                $monthName = $today->format('F'); // Get the full month name
-            @endphp
-            <h2>{{ $monthName }}</h2> <!-- Display the full month name -->
             <div class="table-responsive">
                 <table class="table table-responsive table-hover table-bordered table-sm">
                     <thead class="thead-dark">
@@ -25,20 +20,39 @@
                             {{-- Display dates --}}
                             @php
                                 $today = today();
-                                $dates = [];
+                                $year = $today->year;
+                                $sundaysByMonth = [];
 
-                                for ($i = 1; $i <= $today->daysInMonth; ++$i) {
-                                    $currentDate = $today->copy()->day($i);  // Create a Carbon object for the current day
+                                $firstSundayOfYear = \Carbon\Carbon::parse("first sunday of January $year");
 
-                                    // Check if the current day is a Sunday (dayOfWeek returns 0 for Sunday)
-                                    if ($currentDate->dayOfWeek == 0 && $currentDate->lte($today)) {
-                                        $dates[] = $currentDate->format('Y-m-d');
-                                    }
+                                $currentSunday = $firstSundayOfYear->copy();
+                                while ($currentSunday->lte($today)) {
+                                    $month = $currentSunday->format('F Y');
+                                    $date = $currentSunday->format('Y-m-d');
+                                    $sundaysByMonth[$month][] = $date;
+                                    $currentSunday->addWeek(); // Move to the next Sunday
                                 }
                             @endphp
 
-                            @foreach ($dates as $date)
-                                <th>{{ $date }}</th>
+                            @foreach ($sundaysByMonth as $month => $sundays)
+                                <th colspan="{{ count($sundays) }}" class="month-column">
+                                    <a href="#" class="toggle-month" data-month="{{ $month }}">{{ $month }}</a>
+                                    <span class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></span>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item minimize-month" href="#" data-month="{{ $month }}">Minimize</a>
+                                    </div>
+                                </th>
+                            @endforeach
+                        </tr>
+                        
+                        <tr class="date-row">
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            @foreach ($sundaysByMonth as $month => $sundays)
+                                @foreach ($sundays as $sunday)
+                                    <th class="date-column {{ str_replace(' ', '-', $month) }}">{{ $sunday }}</th>
+                                @endforeach
                             @endforeach
                         </tr>
                     </thead>
@@ -56,26 +70,24 @@
                                     <td>{{ $employee->id }}</td>
 
                                     {{-- Display checkboxes for each date --}}
-                                    @foreach ($dates as $date)
-                                        <td>
-                                            @php
-                                                $date_picker = $date;
-                                                $check_attd = \App\Models\Attendance::query()
-                                                    ->where('emp_id', $employee->id)
-                                                    ->where('attendance_date', $date_picker)
-                                                    ->first();
-                                                $check_leave = \App\Models\Leave::query()
-                                                    ->where('emp_id', $employee->id)
-                                                    ->where('leave_date', $date_picker)
-                                                    ->first();
-                                            @endphp
+                                    @foreach ($sundaysByMonth as $month => $sundays)
+                                        @foreach ($sundays as $sunday)
+                                            <td class="date-column {{ str_replace(' ', '-', $month) }}">
+                                                @php
+                                                    $date_picker = $sunday;
+                                                    $check_attd = \App\Models\Attendance::query()
+                                                        ->where('emp_id', $employee->id)
+                                                        ->where('attendance_date', $date_picker)
+                                                        ->first();
+                                                @endphp
 
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" id="check_box_{{ $date_picker }}"
-                                                    name="attd[{{ $date_picker }}][{{ $employee->id }}]" type="checkbox"
-                                                    @if (isset($check_attd)) checked @endif value="1">
-                                            </div>
-                                        </td>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" id="check_box_{{ $date_picker }}"
+                                                        name="attd[{{ $date_picker }}][{{ $employee->id }}]" type="checkbox"
+                                                        @if (isset($check_attd)) checked @endif value="1">
+                                                </div>
+                                            </td>
+                                        @endforeach
                                     @endforeach
                                 </tr>
                             @endforeach
@@ -85,4 +97,24 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+        $(document).ready(function(){
+            $('.toggle-month').click(function(e){
+                e.preventDefault();
+                var month = $(this).data('month');
+                $('.month-column:contains("'+ month +'")').toggleClass('hidden');
+                $('.' + month.split(' ').join('-')).toggleClass('hidden');
+            });
+
+            $('.minimize-month').click(function(e){
+                e.preventDefault();
+                var month = $(this).data('month');
+                $('.month-column:contains("'+ month +'")').addClass('hidden');
+                $('.' + month.split(' ').join('-')).addClass('hidden');
+            });
+        });
+    </script>
 @endsection

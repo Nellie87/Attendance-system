@@ -79,4 +79,5 @@ class CheckController extends Controller
 
     return view('admin.sheet-report')->with(['employees' => Employee::all()]);
     }
+    
 }

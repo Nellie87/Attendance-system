@@ -97,7 +97,7 @@
                                             
                                                        
                                         </div>
-                                        <h2 class="font-500 float-right">{{$data[3]}}%<i class="text-danger ml-2"></i></h2>
+                                        <h2 class="font-500 float-right">{{$data[4]}}%<i class="text-danger ml-2"></i></h2>
                                         <span class="peity-donut float-left" data-peity='{ "fill": ["#02a499", "#f2f2f2"], "innerRadius": 28, "radius": 32 }' data-width="72" data-height="72">{{$data[3]}}/{{count($data)}}</span>
                                          <div class="pt-2">
                                             <div class="float-right">
@@ -109,7 +109,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> 
                         <!-- end row -->
 						<!-- Log on to codeastro.com for more projects! -->
 
