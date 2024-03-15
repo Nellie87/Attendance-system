@@ -81,4 +81,10 @@ class EmployeeController extends Controller
         flash()->success('Success','Employee Record has been Deleted successfully !');
         return redirect()->route('employees.index')->with('success');
     }
+    public function showDeleted()
+    {
+        $deletedEmployees = Employee::onlyTrashed()->get();
+        return view('deletedemployees', compact('deletedEmployees'));
+    }
+    
 }
